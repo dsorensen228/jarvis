@@ -1,0 +1,34 @@
+Sketch uses 1209 bytes (0%) of program storage space. Maximum is 1966080 bytes.
+Global variables use 40 bytes (0%) of dynamic memory, leaving 523584 bytes for local variables. Maximum is 523624 bytes.
+Open On-Chip Debugger 0.12.0+dev-ge6a2c12f4 (2025-05-22-15:51)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+debug_level: 2
+clock_config
+Info : Linux GPIOD JTAG/SWD bitbang driver (libgpiod v2)
+Info : Note: The adapter "linuxgpiod" doesn't support configurable speed
+Info : SWD DPIDR 0x0be12477
+Info : [stm32u5.ap0] Examination succeed
+Info : [stm32u5.cpu] Cortex-M33 r0p4 processor detected
+Info : [stm32u5.cpu] target has 8 breakpoints, 4 watchpoints
+Info : [stm32u5.cpu] Examination succeed
+Info : [stm32u5.ap0] gdb port disabled
+Info : [stm32u5.cpu] starting gdb server on 3333
+Info : Listening on port 3333 for gdb connections
+CPU in Non-Secure state
+[stm32u5.cpu] halted due to debug-request, current mode: Thread 
+xPSR: 0x41000000 pc: 0x0801748c psp: 0x2002ccf8
+Info : device idcode = 0x30076482 (STM32U57/U58xx - Rev U : 0x3007)
+Info : TZEN = 0 : TrustZone disabled by option bytes
+Info : RDP level 0 (0xAA)
+Info : flash size = 2048 KiB
+Info : flash mode : dual-bank
+Info : Padding image section 0 at 0x08091a78 with 8 bytes (bank write end alignment)
+Warn : Adding extra erase range, 0x08091a80 .. 0x08091fff
+Info : Padding image section 0 at 0x080f1164 with 12 bytes (bank write end alignment)
+Warn : Adding extra erase range, 0x080f1170 .. 0x080f1fff
+shutdown command invoked
+71ca6203bb3225a5e5108cc94a7f344173950f7e213d49c33e6f539d785250e2  boot-spinner.bin
+7003ad604ed43c0d65e9d7a5ffd046848329a9912d7f420515f0878affd747d6  build/spinner.ino.elf-zsk.bin
+74526a2ccfab5faefe92a4532039d3333596c6a72cc86f7573afdabedfe71ae5  mcu-before-spinner.bin

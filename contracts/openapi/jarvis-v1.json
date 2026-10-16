@@ -1,0 +1,5549 @@
+{
+  "components": {
+    "schemas": {
+      "BanterStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "default": false,
+            "title": "Available",
+            "type": "boolean"
+          },
+          "busy": {
+            "default": false,
+            "title": "Busy",
+            "type": "boolean"
+          },
+          "paired": {
+            "default": false,
+            "title": "Paired",
+            "type": "boolean"
+          },
+          "source_device_id": {
+            "title": "Source Device Id",
+            "type": "string"
+          },
+          "status": {
+            "default": "unpaired",
+            "enum": [
+              "unpaired",
+              "offline",
+              "not_idle",
+              "ready",
+              "queued",
+              "running",
+              "completed",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "title": "BanterStatus",
+        "type": "object"
+      },
+      "Body_camera_event_v1_devices__device_id__camera_events_post": {
+        "properties": {
+          "captured_at": {
+            "default": "",
+            "title": "Captured At",
+            "type": "string"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "event_id": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Event Id",
+            "type": "string"
+          },
+          "event_type": {
+            "default": "doorbell",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Event Type",
+            "type": "string"
+          },
+          "frame": {
+            "format": "binary",
+            "title": "Frame",
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id"
+        ],
+        "title": "Body_camera_event_v1_devices__device_id__camera_events_post",
+        "type": "object"
+      },
+      "Body_synthesize_v1_speech_synthesize_post": {
+        "properties": {
+          "text": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "Body_synthesize_v1_speech_synthesize_post",
+        "type": "object"
+      },
+      "Body_upload_avatar_v1_users_me_avatar_post": {
+        "properties": {
+          "file": {
+            "format": "binary",
+            "title": "File",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_avatar_v1_users_me_avatar_post",
+        "type": "object"
+      },
+      "Body_upload_file_asset_v1_assets_files_post": {
+        "properties": {
+          "conversation_id": {
+            "title": "Conversation Id",
+            "type": "string"
+          },
+          "file": {
+            "format": "binary",
+            "title": "File",
+            "type": "string"
+          },
+          "parent_id": {
+            "title": "Parent Id",
+            "type": "string"
+          },
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_file_asset_v1_assets_files_post",
+        "type": "object"
+      },
+      "ChatRequest": {
+        "properties": {
+          "attachments": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Attachments",
+            "type": "array"
+          },
+          "conversation_id": {
+            "title": "Conversation Id",
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 100000,
+            "minLength": 1,
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "title": "ChatRequest",
+        "type": "object"
+      },
+      "ConversationCreate": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "title": {
+            "default": "New conversation",
+            "maxLength": 300,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "title": "ConversationCreate",
+        "type": "object"
+      },
+      "ConversationPatch": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 300,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "title": "ConversationPatch",
+        "type": "object"
+      },
+      "CreateCodeTask": {
+        "properties": {
+          "model": {
+            "enum": [
+              "gpt-5.6-sol-medium",
+              "claude-opus-5-thinking-high",
+              "claude-fable-5-thinking-high"
+            ],
+            "title": "Model",
+            "type": "string"
+          },
+          "prompt": {
+            "maxLength": 50000,
+            "minLength": 1,
+            "title": "Prompt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "CreateCodeTask",
+        "type": "object"
+      },
+      "DeviceCreate": {
+        "properties": {
+          "base_url": {
+            "title": "Base Url",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "voice",
+              "camera",
+              "display",
+              "wearable"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "room": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Room",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "kind"
+        ],
+        "title": "DeviceCreate",
+        "type": "object"
+      },
+      "DevicePatch": {
+        "properties": {
+          "base_url": {
+            "title": "Base Url",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "voice",
+              "camera",
+              "display",
+              "wearable"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "room": {
+            "maxLength": 200,
+            "title": "Room",
+            "type": "string"
+          }
+        },
+        "title": "DevicePatch",
+        "type": "object"
+      },
+      "DeviceRegistration": {
+        "properties": {
+          "base_url": {
+            "title": "Base Url",
+            "type": "string"
+          },
+          "callback_token": {
+            "maxLength": 4096,
+            "minLength": 16,
+            "title": "Callback Token",
+            "type": "string"
+          },
+          "kind": {
+            "default": "camera",
+            "enum": [
+              "camera"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "room": {
+            "maxLength": 200,
+            "title": "Room",
+            "type": "string"
+          }
+        },
+        "required": [
+          "callback_token"
+        ],
+        "title": "DeviceRegistration",
+        "type": "object"
+      },
+      "Exchange": {
+        "additionalProperties": false,
+        "properties": {
+          "emotion": {
+            "enum": [
+              "curious",
+              "pleased",
+              "skeptical",
+              "indignant",
+              "conspiratorial"
+            ],
+            "title": "Emotion",
+            "type": "string"
+          },
+          "jarvis": {
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Jarvis",
+            "type": "string"
+          },
+          "sherman": {
+            "maxLength": 180,
+            "minLength": 1,
+            "title": "Sherman",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sherman",
+          "emotion",
+          "jarvis"
+        ],
+        "title": "Exchange",
+        "type": "object"
+      },
+      "GoogleTokenRequest": {
+        "properties": {
+          "google_id_token": {
+            "maxLength": 16384,
+            "minLength": 1,
+            "title": "Google Id Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "google_id_token"
+        ],
+        "title": "GoogleTokenRequest",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "LightControlRequest": {
+        "properties": {
+          "action": {
+            "enum": [
+              "turn_on",
+              "turn_off",
+              "toggle",
+              "brightness",
+              "color",
+              "color_temperature"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object"
+          },
+          "scope": {
+            "default": "room",
+            "enum": [
+              "device",
+              "room",
+              "all"
+            ],
+            "title": "Scope",
+            "type": "string"
+          },
+          "selector": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Selector",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "title": "LightControlRequest",
+        "type": "object"
+      },
+      "MemoryCreate": {
+        "properties": {
+          "category": {
+            "default": "general",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "content": {
+            "maxLength": 20000,
+            "minLength": 1,
+            "title": "Content",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "title": "MemoryCreate",
+        "type": "object"
+      },
+      "MemoryPatch": {
+        "properties": {
+          "category": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "content": {
+            "maxLength": 20000,
+            "minLength": 1,
+            "title": "Content",
+            "type": "string"
+          }
+        },
+        "title": "MemoryPatch",
+        "type": "object"
+      },
+      "PollResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "trigger_id": {
+            "pattern": "^[a-f0-9]{32}$",
+            "title": "Trigger Id",
+            "type": "string"
+          }
+        },
+        "title": "PollResponse",
+        "type": "object"
+      },
+      "ProjectCreate": {
+        "properties": {
+          "description": {
+            "default": "",
+            "maxLength": 100000,
+            "title": "Description",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "ProjectCreate",
+        "type": "object"
+      },
+      "ProjectPatch": {
+        "properties": {
+          "description": {
+            "maxLength": 100000,
+            "title": "Description",
+            "type": "string"
+          },
+          "status": {
+            "maxLength": 100000,
+            "title": "Status",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "title": "ProjectPatch",
+        "type": "object"
+      },
+      "PushTokenDelete": {
+        "properties": {
+          "device_id": {
+            "maxLength": 300,
+            "title": "Device Id",
+            "type": "string"
+          },
+          "provider": {
+            "default": "expo",
+            "enum": [
+              "expo"
+            ],
+            "title": "Provider",
+            "type": "string"
+          },
+          "token": {
+            "maxLength": 4096,
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "title": "PushTokenDelete",
+        "type": "object"
+      },
+      "PushTokenRequest": {
+        "properties": {
+          "device_id": {
+            "maxLength": 300,
+            "title": "Device Id",
+            "type": "string"
+          },
+          "platform": {
+            "default": "",
+            "maxLength": 50,
+            "title": "Platform",
+            "type": "string"
+          },
+          "provider": {
+            "default": "expo",
+            "enum": [
+              "expo"
+            ],
+            "title": "Provider",
+            "type": "string"
+          },
+          "token": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "title": "PushTokenRequest",
+        "type": "object"
+      },
+      "RefreshRequest": {
+        "properties": {
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "refresh_token"
+        ],
+        "title": "RefreshRequest",
+        "type": "object"
+      },
+      "RobotPoll": {
+        "additionalProperties": false,
+        "properties": {
+          "ready": {
+            "title": "Ready",
+            "type": "boolean"
+          },
+          "response_device_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,100}$",
+            "title": "Response Device Id",
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/TriggerResult"
+          },
+          "source_device_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,100}$",
+            "title": "Source Device Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_device_id",
+          "response_device_id",
+          "ready"
+        ],
+        "title": "RobotPoll",
+        "type": "object"
+      },
+      "RoomCreate": {
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "RoomCreate",
+        "type": "object"
+      },
+      "RoomPatch": {
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "RoomPatch",
+        "type": "object"
+      },
+      "ScriptRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "recent_exchanges": {
+            "items": {
+              "$ref": "#/components/schemas/Exchange"
+            },
+            "maxItems": 8,
+            "title": "Recent Exchanges",
+            "type": "array"
+          },
+          "response_device_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,100}$",
+            "title": "Response Device Id",
+            "type": "string"
+          },
+          "source_device_id": {
+            "pattern": "^[a-zA-Z0-9_-]{1,100}$",
+            "title": "Source Device Id",
+            "type": "string"
+          },
+          "trigger_id": {
+            "pattern": "^[a-f0-9]{32}$",
+            "title": "Trigger Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_device_id",
+          "response_device_id"
+        ],
+        "title": "ScriptRequest",
+        "type": "object"
+      },
+      "ScriptResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "exchanges": {
+            "items": {
+              "$ref": "#/components/schemas/Exchange"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Exchanges",
+            "type": "array"
+          },
+          "expires_in_seconds": {
+            "title": "Expires In Seconds",
+            "type": "integer"
+          },
+          "initiator": {
+            "default": "sherman",
+            "enum": [
+              "sherman",
+              "jarvis"
+            ],
+            "title": "Initiator",
+            "type": "string"
+          },
+          "response_device_id": {
+            "title": "Response Device Id",
+            "type": "string"
+          },
+          "schema_version": {
+            "maximum": 1.0,
+            "minimum": 1.0,
+            "title": "Schema Version",
+            "type": "integer"
+          },
+          "script_id": {
+            "title": "Script Id",
+            "type": "string"
+          },
+          "source_device_id": {
+            "title": "Source Device Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema_version",
+          "exchanges",
+          "script_id",
+          "source_device_id",
+          "response_device_id",
+          "expires_in_seconds"
+        ],
+        "title": "ScriptResponse",
+        "type": "object"
+      },
+      "ShoppingListCreate": {
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "ShoppingListCreate",
+        "type": "object"
+      },
+      "ShoppingListPatch": {
+        "properties": {
+          "add_items": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Add Items",
+            "type": "array"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "remove_item_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Remove Item Ids",
+            "type": "array"
+          },
+          "share_with_user_id": {
+            "title": "Share With User Id",
+            "type": "string"
+          },
+          "toggle_item_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Toggle Item Ids",
+            "type": "array"
+          }
+        },
+        "title": "ShoppingListPatch",
+        "type": "object"
+      },
+      "SmartDevicePatch": {
+        "properties": {
+          "component_labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Component Labels",
+            "type": "object"
+          },
+          "is_light": {
+            "title": "Is Light",
+            "type": "boolean"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "primary_for_room": {
+            "title": "Primary For Room",
+            "type": "boolean"
+          },
+          "room": {
+            "maxLength": 200,
+            "title": "Room",
+            "type": "string"
+          }
+        },
+        "title": "SmartDevicePatch",
+        "type": "object"
+      },
+      "SmartHomeCommand": {
+        "properties": {
+          "action": {
+            "enum": [
+              "turn_on",
+              "turn_off",
+              "toggle",
+              "brightness",
+              "color",
+              "color_temperature",
+              "volume_up",
+              "volume_down",
+              "mute",
+              "unmute",
+              "play",
+              "pause",
+              "play_pause",
+              "launch_app",
+              "key"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "component": {
+            "default": "",
+            "maxLength": 64,
+            "title": "Component",
+            "type": "string"
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "title": "SmartHomeCommand",
+        "type": "object"
+      },
+      "TextAssetCreate": {
+        "properties": {
+          "body": {
+            "maxLength": 2000000,
+            "title": "Body",
+            "type": "string"
+          },
+          "conversation_id": {
+            "title": "Conversation Id",
+            "type": "string"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Keywords",
+            "type": "array"
+          },
+          "parent_id": {
+            "title": "Parent Id",
+            "type": "string"
+          },
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "body"
+        ],
+        "title": "TextAssetCreate",
+        "type": "object"
+      },
+      "TextAssetPatch": {
+        "properties": {
+          "body": {
+            "maxLength": 2000000,
+            "title": "Body",
+            "type": "string"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Keywords",
+            "type": "array"
+          },
+          "parent_id": {
+            "title": "Parent Id",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "title": "TextAssetPatch",
+        "type": "object"
+      },
+      "TimerCreate": {
+        "properties": {
+          "duration_seconds": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 604800.0,
+            "title": "Duration Seconds",
+            "type": "integer"
+          },
+          "label": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "duration_seconds"
+        ],
+        "title": "TimerCreate",
+        "type": "object"
+      },
+      "TimerPatch": {
+        "properties": {
+          "action": {
+            "enum": [
+              "start",
+              "pause",
+              "reset",
+              "cancel"
+            ],
+            "title": "Action",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "title": "TimerPatch",
+        "type": "object"
+      },
+      "TodoCreate": {
+        "properties": {
+          "category": {
+            "default": "",
+            "maxLength": 100,
+            "title": "Category",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "TodoCreate",
+        "type": "object"
+      },
+      "TodoPatch": {
+        "properties": {
+          "category": {
+            "maxLength": 100,
+            "title": "Category",
+            "type": "string"
+          },
+          "completed": {
+            "title": "Completed",
+            "type": "boolean"
+          },
+          "title": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "title": "TodoPatch",
+        "type": "object"
+      },
+      "TokenPair": {
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "type": "string"
+          },
+          "expires_in": {
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          },
+          "token_type": {
+            "default": "bearer",
+            "title": "Token Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "access_token",
+          "refresh_token",
+          "expires_in"
+        ],
+        "title": "TokenPair",
+        "type": "object"
+      },
+      "TokenRequest": {
+        "properties": {
+          "password": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "TokenRequest",
+        "type": "object"
+      },
+      "TriggerResult": {
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "completed",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "trigger_id": {
+            "pattern": "^[a-f0-9]{32}$",
+            "title": "Trigger Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "trigger_id",
+          "status"
+        ],
+        "title": "TriggerResult",
+        "type": "object"
+      },
+      "UserCreate": {
+        "properties": {
+          "name": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Name",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 1024,
+            "minLength": 8,
+            "title": "Password",
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "UserCreate",
+        "type": "object"
+      },
+      "UserPatch": {
+        "properties": {
+          "name": {
+            "maxLength": 200,
+            "title": "Name",
+            "type": "string"
+          },
+          "settings": {
+            "title": "Settings",
+            "type": "object"
+          }
+        },
+        "title": "UserPatch",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "WearChatRequest": {
+        "properties": {
+          "conversation_id": {
+            "title": "Conversation Id",
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "title": "WearChatRequest",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Local-first, single-agent home assistant API",
+    "title": "Jarvis API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/health/live": {
+      "get": {
+        "operationId": "live_health_live_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Live Health Live Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Live",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "ready_health_ready_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Ready Health Ready Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Ready",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/v1/assets": {
+      "get": {
+        "operationId": "search_assets_v1_assets_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Query",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "project_id",
+            "required": false,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Search Assets V1 Assets Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Search Assets",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/assets/files": {
+      "post": {
+        "operationId": "upload_file_asset_v1_assets_files_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_file_asset_v1_assets_files_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Upload File Asset V1 Assets Files Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Upload File Asset",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/assets/text": {
+      "post": {
+        "operationId": "create_text_asset_v1_assets_text_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextAssetCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Text Asset V1 Assets Text Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Text Asset",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/assets/{asset_id}": {
+      "delete": {
+        "operationId": "delete_asset_v1_assets__asset_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "asset_id",
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Asset",
+        "tags": [
+          "projects"
+        ]
+      },
+      "get": {
+        "operationId": "get_asset_v1_assets__asset_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "asset_id",
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Asset V1 Assets  Asset Id  Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Asset",
+        "tags": [
+          "projects"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_text_asset_v1_assets__asset_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "asset_id",
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextAssetPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Text Asset V1 Assets  Asset Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Text Asset",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/assets/{asset_id}/content": {
+      "get": {
+        "operationId": "get_asset_content_v1_assets__asset_id__content_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "asset_id",
+            "required": true,
+            "schema": {
+              "title": "Asset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Asset Content V1 Assets  Asset Id  Content Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Asset Content",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/auth/google": {
+      "post": {
+        "operationId": "google_token_v1_auth_google_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPair"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Google Token",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "operationId": "logout_v1_auth_logout_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Logout",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/auth/refresh": {
+      "post": {
+        "operationId": "refresh_v1_auth_refresh_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPair"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Refresh",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/auth/token": {
+      "post": {
+        "operationId": "token_v1_auth_token_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPair"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Token",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/banter/devices/{response_device_id}": {
+      "get": {
+        "operationId": "demo_status_v1_banter_devices__response_device_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "response_device_id",
+            "required": true,
+            "schema": {
+              "title": "Response Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BanterStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Demo Status",
+        "tags": [
+          "banter"
+        ]
+      }
+    },
+    "/v1/banter/devices/{response_device_id}/trigger": {
+      "post": {
+        "operationId": "trigger_demo_v1_banter_devices__response_device_id__trigger_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "response_device_id",
+            "required": true,
+            "schema": {
+              "title": "Response Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BanterStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Trigger Demo",
+        "tags": [
+          "banter"
+        ]
+      }
+    },
+    "/v1/banter/poll": {
+      "post": {
+        "operationId": "poll_trigger_v1_banter_poll_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RobotPoll"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PollResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Poll Trigger",
+        "tags": [
+          "banter"
+        ]
+      }
+    },
+    "/v1/banter/scripts": {
+      "post": {
+        "operationId": "create_script_v1_banter_scripts_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScriptRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScriptResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Script",
+        "tags": [
+          "banter"
+        ]
+      }
+    },
+    "/v1/banter/scripts/{script_id}/replies/{exchange_index}": {
+      "post": {
+        "operationId": "play_reply_v1_banter_scripts__script_id__replies__exchange_index__post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "script_id",
+            "required": true,
+            "schema": {
+              "title": "Script Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "exchange_index",
+            "required": true,
+            "schema": {
+              "title": "Exchange Index",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Play Reply V1 Banter Scripts  Script Id  Replies  Exchange Index  Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Play Reply",
+        "tags": [
+          "banter"
+        ]
+      }
+    },
+    "/v1/chat": {
+      "post": {
+        "operationId": "chat_v1_chat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Chat V1 Chat Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Chat",
+        "tags": [
+          "conversations"
+        ]
+      }
+    },
+    "/v1/chat/stream": {
+      "post": {
+        "operationId": "chat_stream_v1_chat_stream_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Chat Stream",
+        "tags": [
+          "conversations"
+        ]
+      }
+    },
+    "/v1/code-tasks": {
+      "get": {
+        "operationId": "list_code_tasks_v1_code_tasks_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200.0,
+              "minimum": 1.0,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "title": "Status",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "object"
+                  },
+                  "title": "Response List Code Tasks V1 Code Tasks Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Code Tasks",
+        "tags": [
+          "code-tasks"
+        ]
+      },
+      "post": {
+        "operationId": "create_code_task_v1_code_tasks_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCodeTask"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Code Task V1 Code Tasks Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Code Task",
+        "tags": [
+          "code-tasks"
+        ]
+      }
+    },
+    "/v1/code-tasks/{task_id}": {
+      "get": {
+        "operationId": "get_code_task_v1_code_tasks__task_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "required": true,
+            "schema": {
+              "title": "Task Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Code Task V1 Code Tasks  Task Id  Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Code Task",
+        "tags": [
+          "code-tasks"
+        ]
+      }
+    },
+    "/v1/code-tasks/{task_id}/cancel": {
+      "post": {
+        "operationId": "cancel_code_task_v1_code_tasks__task_id__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "required": true,
+            "schema": {
+              "title": "Task Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Cancel Code Task V1 Code Tasks  Task Id  Cancel Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Cancel Code Task",
+        "tags": [
+          "code-tasks"
+        ]
+      }
+    },
+    "/v1/conversations": {
+      "get": {
+        "operationId": "list_conversations_v1_conversations_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Conversations V1 Conversations Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Conversations",
+        "tags": [
+          "conversations"
+        ]
+      },
+      "post": {
+        "operationId": "create_conversation_v1_conversations_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConversationCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Conversation V1 Conversations Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Conversation",
+        "tags": [
+          "conversations"
+        ]
+      }
+    },
+    "/v1/conversations/{conversation_id}": {
+      "delete": {
+        "operationId": "delete_conversation_v1_conversations__conversation_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "conversation_id",
+            "required": true,
+            "schema": {
+              "title": "Conversation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Conversation",
+        "tags": [
+          "conversations"
+        ]
+      },
+      "get": {
+        "operationId": "get_conversation_v1_conversations__conversation_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "conversation_id",
+            "required": true,
+            "schema": {
+              "title": "Conversation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Conversation V1 Conversations  Conversation Id  Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Conversation",
+        "tags": [
+          "conversations"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_conversation_v1_conversations__conversation_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "conversation_id",
+            "required": true,
+            "schema": {
+              "title": "Conversation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConversationPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Conversation V1 Conversations  Conversation Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Conversation",
+        "tags": [
+          "conversations"
+        ]
+      }
+    },
+    "/v1/devices": {
+      "get": {
+        "operationId": "list_devices_v1_devices_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Devices V1 Devices Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Devices",
+        "tags": [
+          "devices"
+        ]
+      },
+      "post": {
+        "operationId": "create_device_v1_devices_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Device V1 Devices Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Device",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}": {
+      "delete": {
+        "operationId": "delete_device_v1_devices__device_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Device",
+        "tags": [
+          "devices"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_device_v1_devices__device_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevicePatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Device V1 Devices  Device Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Device",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}/camera/events": {
+      "post": {
+        "operationId": "camera_event_v1_devices__device_id__camera_events_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_camera_event_v1_devices__device_id__camera_events_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Camera Event V1 Devices  Device Id  Camera Events Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Camera Event",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}/camera/snapshot": {
+      "get": {
+        "operationId": "camera_snapshot_v1_devices__device_id__camera_snapshot_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Camera Snapshot",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}/camera/stream": {
+      "get": {
+        "operationId": "camera_stream_v1_devices__device_id__camera_stream_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "camera_token",
+            "required": true,
+            "schema": {
+              "maxLength": 500,
+              "minLength": 20,
+              "title": "Camera Token",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Camera Stream",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}/camera/stream-session": {
+      "post": {
+        "operationId": "create_camera_stream_session_v1_devices__device_id__camera_stream_session_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Camera Stream Session V1 Devices  Device Id  Camera Stream Session Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Camera Stream Session",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}/commands": {
+      "post": {
+        "operationId": "command_device_v1_devices__device_id__commands_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Body",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Command Device V1 Devices  Device Id  Commands Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Command Device",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}/heartbeat": {
+      "post": {
+        "operationId": "heartbeat_v1_devices__device_id__heartbeat_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Body",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Heartbeat V1 Devices  Device Id  Heartbeat Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Heartbeat",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/devices/{device_id}/registration": {
+      "put": {
+        "operationId": "register_callback_v1_devices__device_id__registration_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceRegistration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Register Callback V1 Devices  Device Id  Registration Put",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Register Callback",
+        "tags": [
+          "devices"
+        ]
+      }
+    },
+    "/v1/integrations": {
+      "get": {
+        "operationId": "statuses_v1_integrations_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Statuses V1 Integrations Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Statuses",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/integrations/gmail": {
+      "delete": {
+        "operationId": "disconnect_gmail_v1_integrations_gmail_delete",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Disconnect Gmail",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/integrations/gmail/alerts": {
+      "get": {
+        "operationId": "gmail_alerts_v1_integrations_gmail_alerts_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Gmail Alerts V1 Integrations Gmail Alerts Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Gmail Alerts",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/integrations/gmail/alerts/{message_id}": {
+      "delete": {
+        "operationId": "dismiss_gmail_alert_v1_integrations_gmail_alerts__message_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "title": "Message Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Dismiss Gmail Alert",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/integrations/gmail/callback": {
+      "get": {
+        "operationId": "gmail_callback_v1_integrations_gmail_callback_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "required": true,
+            "schema": {
+              "title": "State",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "title": "Code",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Gmail Callback",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/integrations/gmail/connect": {
+      "post": {
+        "operationId": "connect_gmail_v1_integrations_gmail_connect_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Connect Gmail V1 Integrations Gmail Connect Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Connect Gmail",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/integrations/gmail/messages": {
+      "get": {
+        "operationId": "search_gmail_v1_integrations_gmail_messages_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "maxLength": 500,
+              "minLength": 1,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 25.0,
+              "minimum": 1.0,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Search Gmail V1 Integrations Gmail Messages Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Search Gmail",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/integrations/gmail/messages/{message_id}": {
+      "get": {
+        "operationId": "read_gmail_v1_integrations_gmail_messages__message_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "title": "Message Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Read Gmail V1 Integrations Gmail Messages  Message Id  Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Read Gmail",
+        "tags": [
+          "integrations"
+        ]
+      }
+    },
+    "/v1/memories": {
+      "get": {
+        "operationId": "list_memories_v1_memories_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Q",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Memories V1 Memories Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Memories",
+        "tags": [
+          "personal"
+        ]
+      },
+      "post": {
+        "operationId": "create_memory_v1_memories_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemoryCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Memory V1 Memories Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Memory",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/memories/{memory_id}": {
+      "delete": {
+        "operationId": "delete_memory_v1_memories__memory_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "memory_id",
+            "required": true,
+            "schema": {
+              "title": "Memory Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Memory",
+        "tags": [
+          "personal"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_memory_v1_memories__memory_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "memory_id",
+            "required": true,
+            "schema": {
+              "title": "Memory Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemoryPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Memory V1 Memories  Memory Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Memory",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/projects": {
+      "get": {
+        "operationId": "list_projects_v1_projects_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Projects V1 Projects Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Projects",
+        "tags": [
+          "projects"
+        ]
+      },
+      "post": {
+        "operationId": "create_project_v1_projects_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Project V1 Projects Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Project",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/projects/{project_id}": {
+      "delete": {
+        "operationId": "delete_project_v1_projects__project_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Project",
+        "tags": [
+          "projects"
+        ]
+      },
+      "get": {
+        "operationId": "get_project_v1_projects__project_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Project V1 Projects  Project Id  Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Project",
+        "tags": [
+          "projects"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_project_v1_projects__project_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Project V1 Projects  Project Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Project",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/projects/{project_id}/folders": {
+      "post": {
+        "operationId": "create_project_folder_v1_projects__project_id__folders_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Body",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Project Folder V1 Projects  Project Id  Folders Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Project Folder",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/projects/{project_id}/nodes/{node_id}": {
+      "delete": {
+        "operationId": "delete_project_node_v1_projects__project_id__nodes__node_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "node_id",
+            "required": true,
+            "schema": {
+              "title": "Node Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Project Node",
+        "tags": [
+          "projects"
+        ]
+      },
+      "patch": {
+        "operationId": "rename_project_node_v1_projects__project_id__nodes__node_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "node_id",
+            "required": true,
+            "schema": {
+              "title": "Node Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Body",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Rename Project Node V1 Projects  Project Id  Nodes  Node Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Rename Project Node",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/projects/{project_id}/tree": {
+      "get": {
+        "operationId": "project_tree_v1_projects__project_id__tree_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "title": "Project Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Project Tree V1 Projects  Project Id  Tree Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Project Tree",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/v1/rooms": {
+      "get": {
+        "operationId": "list_rooms_v1_rooms_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Rooms V1 Rooms Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Rooms",
+        "tags": [
+          "smart-home"
+        ]
+      },
+      "post": {
+        "operationId": "create_room_v1_rooms_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoomCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Room V1 Rooms Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Room",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/rooms/{room_name}": {
+      "delete": {
+        "operationId": "delete_room_v1_rooms__room_name__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "room_name",
+            "required": true,
+            "schema": {
+              "title": "Room Name",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Room",
+        "tags": [
+          "smart-home"
+        ]
+      },
+      "patch": {
+        "operationId": "rename_room_v1_rooms__room_name__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "room_name",
+            "required": true,
+            "schema": {
+              "title": "Room Name",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoomPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Rename Room V1 Rooms  Room Name  Patch",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Rename Room",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/rooms/{room_name}/display": {
+      "get": {
+        "description": "The display a room's media requests belong to, resolved once server-side.",
+        "operationId": "room_display_v1_rooms__room_name__display_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "room_name",
+            "required": true,
+            "schema": {
+              "title": "Room Name",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Room Display V1 Rooms  Room Name  Display Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Room Display",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/rooms/{room_name}/lights": {
+      "get": {
+        "description": "Aggregate light power for a room, for the touchscreen and phone toggles.",
+        "operationId": "room_lights_v1_rooms__room_name__lights_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "room_name",
+            "required": true,
+            "schema": {
+              "title": "Room Name",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Room Lights V1 Rooms  Room Name  Lights Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Room Lights",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/shopping-lists": {
+      "get": {
+        "operationId": "list_shopping_lists_v1_shopping_lists_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Shopping Lists V1 Shopping Lists Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Shopping Lists",
+        "tags": [
+          "personal"
+        ]
+      },
+      "post": {
+        "operationId": "create_shopping_list_v1_shopping_lists_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShoppingListCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Shopping List V1 Shopping Lists Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Shopping List",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/shopping-lists/{list_id}": {
+      "delete": {
+        "operationId": "delete_shopping_list_v1_shopping_lists__list_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "list_id",
+            "required": true,
+            "schema": {
+              "title": "List Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Shopping List",
+        "tags": [
+          "personal"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_shopping_list_v1_shopping_lists__list_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "list_id",
+            "required": true,
+            "schema": {
+              "title": "List Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShoppingListPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Shopping List V1 Shopping Lists  List Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Shopping List",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/smart-devices": {
+      "get": {
+        "operationId": "list_smart_devices_v1_smart_devices_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Smart Devices V1 Smart Devices Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Smart Devices",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/smart-devices/control": {
+      "post": {
+        "operationId": "control_lights_v1_smart_devices_control_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LightControlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Control Lights V1 Smart Devices Control Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Control Lights",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/smart-devices/{device_id}": {
+      "delete": {
+        "operationId": "delete_smart_device_v1_smart_devices__device_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Smart Device",
+        "tags": [
+          "smart-home"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_smart_device_v1_smart_devices__device_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartDevicePatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Smart Device V1 Smart Devices  Device Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Smart Device",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/smart-devices/{device_id}/commands": {
+      "post": {
+        "operationId": "command_smart_device_v1_smart_devices__device_id__commands_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmartHomeCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Command Smart Device V1 Smart Devices  Device Id  Commands Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Command Smart Device",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/smart-devices/{device_id}/state": {
+      "get": {
+        "operationId": "smart_device_state_v1_smart_devices__device_id__state_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "required": true,
+            "schema": {
+              "title": "Device Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Smart Device State V1 Smart Devices  Device Id  State Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Smart Device State",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/smart-home": {
+      "get": {
+        "description": "Platform health. Never exposes the Home Assistant token.",
+        "operationId": "smart_home_status_v1_smart_home_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Smart Home Status V1 Smart Home Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Smart Home Status",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/smart-home/sync": {
+      "post": {
+        "description": "Import or refresh every device Home Assistant provides.",
+        "operationId": "sync_smart_home_v1_smart_home_sync_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Sync Smart Home V1 Smart Home Sync Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Sync Smart Home",
+        "tags": [
+          "smart-home"
+        ]
+      }
+    },
+    "/v1/speech/synthesize": {
+      "post": {
+        "operationId": "synthesize_v1_speech_synthesize_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_synthesize_v1_speech_synthesize_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Synthesize",
+        "tags": [
+          "speech"
+        ]
+      }
+    },
+    "/v1/speech/transcribe": {
+      "post": {
+        "operationId": "transcribe_v1_speech_transcribe_post",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sample_rate",
+            "required": false,
+            "schema": {
+              "default": 16000,
+              "maximum": 48000.0,
+              "minimum": 8000.0,
+              "title": "Sample Rate",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "format": "binary",
+                "title": "Pcm",
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Transcribe V1 Speech Transcribe Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Transcribe",
+        "tags": [
+          "speech"
+        ]
+      }
+    },
+    "/v1/timers": {
+      "get": {
+        "operationId": "list_timers_v1_timers_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Timers V1 Timers Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Timers",
+        "tags": [
+          "personal"
+        ]
+      },
+      "post": {
+        "operationId": "create_timer_v1_timers_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimerCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Timer V1 Timers Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Timer",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/timers/{timer_id}": {
+      "delete": {
+        "operationId": "delete_timer_v1_timers__timer_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "timer_id",
+            "required": true,
+            "schema": {
+              "title": "Timer Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Timer",
+        "tags": [
+          "personal"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_timer_v1_timers__timer_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "timer_id",
+            "required": true,
+            "schema": {
+              "title": "Timer Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimerPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Timer V1 Timers  Timer Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Timer",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/todos": {
+      "get": {
+        "operationId": "list_todos_v1_todos_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "include_completed",
+            "required": false,
+            "schema": {
+              "default": true,
+              "title": "Include Completed",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Todos V1 Todos Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Todos",
+        "tags": [
+          "personal"
+        ]
+      },
+      "post": {
+        "operationId": "create_todo_v1_todos_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create Todo V1 Todos Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Todo",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/todos/{todo_id}": {
+      "delete": {
+        "operationId": "delete_todo_v1_todos__todo_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "todo_id",
+            "required": true,
+            "schema": {
+              "title": "Todo Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Todo",
+        "tags": [
+          "personal"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_todo_v1_todos__todo_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "todo_id",
+            "required": true,
+            "schema": {
+              "title": "Todo Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Todo V1 Todos  Todo Id  Patch"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Todo",
+        "tags": [
+          "personal"
+        ]
+      }
+    },
+    "/v1/users": {
+      "get": {
+        "operationId": "list_users_v1_users_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Users V1 Users Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Users",
+        "tags": [
+          "identity"
+        ]
+      },
+      "post": {
+        "operationId": "create_user_v1_users_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Create User V1 Users Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create User",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/users/me": {
+      "get": {
+        "operationId": "me_v1_users_me_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Me V1 Users Me Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Me",
+        "tags": [
+          "identity"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_me_v1_users_me_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Patch Me V1 Users Me Patch",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Patch Me",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/users/me/avatar": {
+      "post": {
+        "operationId": "upload_avatar_v1_users_me_avatar_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_avatar_v1_users_me_avatar_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Upload Avatar V1 Users Me Avatar Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Upload Avatar",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/users/me/push-tokens": {
+      "delete": {
+        "operationId": "unregister_push_token_v1_users_me_push_tokens_delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushTokenDelete"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Unregister Push Token V1 Users Me Push Tokens Delete",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Unregister Push Token",
+        "tags": [
+          "identity"
+        ]
+      },
+      "post": {
+        "operationId": "register_push_token_v1_users_me_push_tokens_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PushTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Register Push Token V1 Users Me Push Tokens Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Register Push Token",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/users/{user_id}/avatar": {
+      "get": {
+        "operationId": "get_avatar_v1_users__user_id__avatar_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "title": "User Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Avatar",
+        "tags": [
+          "identity"
+        ]
+      }
+    },
+    "/v1/wear/chat": {
+      "post": {
+        "description": "One low-round-trip turn for constrained Wear OS clients.\n\nThe watch performs speech recognition locally, while the API owns the agent\nturn and Kokoro synthesis. Audio is raw mono signed 16-bit little-endian PCM.",
+        "operationId": "wearable_chat_v1_wear_chat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WearChatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Wearable Chat V1 Wear Chat Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Wearable Chat",
+        "tags": [
+          "wearable"
+        ]
+      }
+    }
+  }
+}

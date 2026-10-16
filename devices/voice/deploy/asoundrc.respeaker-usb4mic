@@ -1,0 +1,70 @@
+# ReSpeaker USB 4 Mic Array (2886:0018), firmware 6_channels.
+# Capture ch0 is the AEC/beamformed ASR signal; ch1-4 are raw microphones and ch5 is the
+# playback reference. dmix/dsnoop let Jarvis and desktop audio share the device while every
+# playback client continues to feed the board's AEC reference.
+#
+# These PCMs exist for the PipeWire module-alsa-sink/module-alsa-source pair loaded by
+# setup-usb4mic-audio.sh. ALSA "default" is intentionally left on PipeWire so all clients,
+# including the Jarvis daemon, share one volume-controlled path.
+
+pcm.respeaker_hw {
+  type hw
+  card ArrayUAC10
+  device 0
+}
+
+pcm.respeaker_dmix {
+  type dmix
+  ipc_key 928181
+  ipc_perm 0660
+  slave {
+    pcm "respeaker_hw"
+    format S24_3LE
+    rate 16000
+    channels 2
+    period_size 256
+    buffer_size 1024
+  }
+}
+
+pcm.respeaker_play {
+  type plug
+  slave.pcm "respeaker_dmix"
+}
+
+pcm.respeaker_dsnoop {
+  type dsnoop
+  ipc_key 928182
+  ipc_perm 0660
+  slave {
+    pcm "respeaker_hw"
+    format S16_LE
+    rate 16000
+    channels 6
+    period_size 256
+    buffer_size 1024
+  }
+}
+
+# Strictly one client channel: the AEC/beamformed ch0 at full scale. The previous
+# "plug + ttable" form let clients negotiate six channels (ch0 plus five silent
+# pads), and the resulting PipeWire downmix attenuated the ASR/barge-in signal.
+pcm.respeaker_asr {
+  type route
+  slave {
+    pcm "respeaker_dsnoop"
+    channels 6
+  }
+  ttable.0.0 1
+}
+
+pcm.respeaker {
+  type asym
+  playback.pcm "respeaker_play"
+  capture.pcm "respeaker_asr"
+}
+
+ctl.respeaker {
+  type hw
+  card ArrayUAC10
+}

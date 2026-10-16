@@ -1,0 +1,66 @@
+{
+  "expo": {
+    "name": "Jarvis",
+    "slug": "jarvis-app",
+    "description": "Your personally-hosted AI assistant. Direct control over your data.",
+    "version": "1.0.3",
+    "orientation": "portrait",
+    "icon": "./assets/jarvis.png",
+    "scheme": "jarvis",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1e293b"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jarvis.app"
+    },
+    "android": {
+      "versionCode": 8,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/jarvis_adaptive_foreground.png",
+        "backgroundImage": "./assets/jarvis_adaptive_background.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.jarvis.app",
+      "permissions": [
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon_64.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-notifications",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "buildToolsVersion": "34.0.0"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "00000000-0000-4000-8000-000000000000"
+      }
+    },
+    "owner": "example-owner"
+  }
+}

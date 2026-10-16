@@ -1,0 +1,17 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --build-arg
+      - EXPO_PUBLIC_API_URL=${_API_URL}
+      - --build-arg
+      - EXPO_PUBLIC_GOOGLE_CLIENT_ID=${_GOOGLE_CLIENT_ID}
+      - --build-arg
+      - EXPO_PUBLIC_APK_DOWNLOAD_URL=${_APK_URL}
+      - --tag
+      - ${_IMAGE}
+      - .
+images:
+  - ${_IMAGE}
+options:
+  logging: CLOUD_LOGGING_ONLY

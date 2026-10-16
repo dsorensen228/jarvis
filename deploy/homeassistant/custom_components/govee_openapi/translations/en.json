@@ -1,0 +1,39 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Govee OpenAPI",
+        "description": "Enter the Govee API key issued to this account.",
+        "data": {
+          "api_key": "API key"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate Govee",
+        "description": "The stored API key was rejected. Enter a new key for the same account.",
+        "data": {
+          "api_key": "API key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach the Govee API.",
+      "invalid_auth": "Govee rejected that API key.",
+      "no_devices": "The key works but the account reports no devices."
+    },
+    "abort": {
+      "already_configured": "This Govee account is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Govee polling",
+        "description": "Each refresh reads state once per device. OpenAPI limits are per device and per account; lower values are fresher but use more quota.",
+        "data": {
+          "state_interval_seconds": "Seconds between state refreshes"
+        }
+      }
+    }
+  }
+}

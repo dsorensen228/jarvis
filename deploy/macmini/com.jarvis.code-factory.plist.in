@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.jarvis.code-factory</string>
+  <key>UserName</key><string>__USER__</string>
+  <key>GroupName</key><string>staff</string>
+  <key>WorkingDirectory</key><string>__REPO_DIR__/services/code-factory</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-ic</string>
+    <string>mongo_uri=$(__HOME__/google-cloud-sdk/bin/gcloud secrets versions access latest --secret=mongodb-uri --project=example-gcp-project) || exit 1; exec /usr/bin/env -i HOME=__HOME__ PATH=__HOME__/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin CURSOR_API_KEY="$CURSOR_API_KEY" AGENT_CLI_CREDENTIAL_STORE=file CODE_FACTORY_WORKSPACE=__WORKSPACE__ CODE_FACTORY_AGENT_PATH=__HOME__/.local/bin/agent CODE_FACTORY_MONGO_URI="$mongo_uri" CODE_FACTORY_MONGO_DATABASE=jarvis CODE_FACTORY_MONGO_COLLECTION=code_factory_tasks CODE_FACTORY_TEMPORAL_ADDRESS=127.0.0.1:7233 CODE_FACTORY_UPDATER_PATH="__SUPPORT_DIR__/update-code-factory.sh" CODE_FACTORY_HOST=0.0.0.0 CODE_FACTORY_PORT=8010 __REPO_DIR__/services/code-factory/.venv/bin/code-factory</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ProcessType</key><string>Background</string>
+  <key>StandardOutPath</key><string>__LOG_DIR__/code-factory.log</string>
+  <key>StandardErrorPath</key><string>__LOG_DIR__/code-factory.log</string>
+  <key>ThrottleInterval</key><integer>10</integer>
+  <key>SoftResourceLimits</key>
+  <dict><key>NumberOfFiles</key><integer>4096</integer></dict>
+</dict>
+</plist>

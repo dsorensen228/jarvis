@@ -1,0 +1,90 @@
+{
+  "samples": [
+    {
+      "sample": 0,
+      "spinner_position": 3,
+      "lit_pixels": [
+        {
+          "x": 8,
+          "y": 1,
+          "brightness": 16
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "brightness": 64
+        },
+        {
+          "x": 8,
+          "y": 5,
+          "brightness": 192
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "spinner_position": 4,
+      "lit_pixels": [
+        {
+          "x": 9,
+          "y": 3,
+          "brightness": 16
+        },
+        {
+          "x": 8,
+          "y": 5,
+          "brightness": 64
+        },
+        {
+          "x": 6,
+          "y": 6,
+          "brightness": 192
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "spinner_position": 6,
+      "lit_pixels": [
+        {
+          "x": 3,
+          "y": 3,
+          "brightness": 192
+        },
+        {
+          "x": 4,
+          "y": 5,
+          "brightness": 64
+        },
+        {
+          "x": 6,
+          "y": 6,
+          "brightness": 16
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "spinner_position": 7,
+      "lit_pixels": [
+        {
+          "x": 4,
+          "y": 1,
+          "brightness": 192
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "brightness": 64
+        },
+        {
+          "x": 4,
+          "y": 5,
+          "brightness": 16
+        }
+      ]
+    }
+  ],
+  "all_match_generated_frames": true,
+  "animation_advances": true
+}

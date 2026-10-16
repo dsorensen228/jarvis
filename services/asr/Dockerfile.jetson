@@ -1,0 +1,36 @@
+ARG L4T_BASE_IMAGE=nvcr.io/nvidia/l4t-jetpack:r35.4.1
+FROM ${L4T_BASE_IMAGE}
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH} \
+    PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential cmake git libopenblas-dev pkg-config python3-dev python3-pip \
+      libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libavutil-dev \
+      libswresample-dev libswscale-dev && \
+    python3 -m pip install --no-cache-dir pybind11==2.13.6 && \
+    rm -rf /var/lib/apt/lists/*
+
+# L4T 35 exposes CUDA 11.4/cuDNN 8. CTranslate2 3.24 and faster-whisper 0.10 are
+# the newest compatible line; newer releases require CUDA 12 as well as newer Python.
+RUN git clone --depth 1 --branch v3.24.0 --recursive --shallow-submodules \
+      https://github.com/OpenNMT/CTranslate2.git /tmp/ctranslate2 && \
+    cmake -S /tmp/ctranslate2 -B /tmp/ctranslate2/build \
+      -DWITH_MKL=OFF -DWITH_OPENBLAS=ON -DOPENMP_RUNTIME=COMP \
+      -DWITH_CUDA=ON -DWITH_CUDNN=ON -DCUDA_ARCH_LIST=8.7 \
+      -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local && \
+    cmake --build /tmp/ctranslate2/build --parallel "$(nproc)" && \
+    cmake --install /tmp/ctranslate2/build && ldconfig && \
+    python3 -m pip install --no-cache-dir /tmp/ctranslate2/python && \
+    rm -rf /tmp/ctranslate2
+
+WORKDIR /service
+RUN python3 -m pip install --no-cache-dir Cython==0.29.37 && \
+    python3 -m pip install --no-cache-dir --no-build-isolation av==10.0.0
+COPY requirements.txt .
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
+COPY app.py .
+
+EXPOSE 8091
+CMD ["python3", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8091"]

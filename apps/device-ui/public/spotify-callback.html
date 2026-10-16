@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Spotify</title>
+  </head>
+  <body>
+    <script>
+      var p = new URLSearchParams(window.location.search);
+      var code = p.get('code');
+      var err = p.get('error');
+      var origin = window.location.origin;
+      if (code) {
+        window.location.replace(origin + '/?code=' + encodeURIComponent(code) + '#/spotify');
+      } else {
+        window.location.replace(
+          origin + '/?error=' + encodeURIComponent(err || 'access_denied') + '#/spotify'
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "jarvis-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/device-ui"
+  ],
+  "scripts": {
+    "device-ui:build": "npm run build --workspace @jarvis/device-ui",
+    "device-ui:dev": "npm run dev --workspace @jarvis/device-ui",
+    "mobile:typecheck": "npm --prefix apps/mobile run typecheck",
+    "mobile:web": "npm --prefix apps/mobile run build:web"
+  }
+}

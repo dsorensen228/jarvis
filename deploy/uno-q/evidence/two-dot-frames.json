@@ -1,0 +1,70 @@
+{
+  "samples": [
+    {
+      "sample": 0,
+      "spinner_position": 0,
+      "lit_pixels": [
+        {
+          "x": 6,
+          "y": 0,
+          "brightness": 192
+        },
+        {
+          "x": 6,
+          "y": 6,
+          "brightness": 192
+        }
+      ]
+    },
+    {
+      "sample": 1,
+      "spinner_position": 2,
+      "lit_pixels": [
+        {
+          "x": 3,
+          "y": 3,
+          "brightness": 192
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "brightness": 192
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "spinner_position": 3,
+      "lit_pixels": [
+        {
+          "x": 4,
+          "y": 1,
+          "brightness": 192
+        },
+        {
+          "x": 8,
+          "y": 5,
+          "brightness": 192
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "spinner_position": 1,
+      "lit_pixels": [
+        {
+          "x": 8,
+          "y": 1,
+          "brightness": 192
+        },
+        {
+          "x": 4,
+          "y": 5,
+          "brightness": 192
+        }
+      ]
+    }
+  ],
+  "all_frames_have_two_opposite_dots": true,
+  "animation_advances": true
+}

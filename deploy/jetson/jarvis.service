@@ -1,0 +1,23 @@
+[Unit]
+Description=Jarvis local assistant stack
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+RequiresMountsFor=/mnt/ssd/jarvis
+ConditionPathExists=/mnt/ssd/jarvis/deploy/jetson/compose.yml
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=10
+WorkingDirectory=/mnt/ssd/jarvis
+ExecStartPre=/bin/sh -c 'test -s /etc/docker-resolv-jarvis.conf || printf "nameserver 127.0.0.53\\nnameserver 8.8.8.8\\nnameserver 1.1.1.1\\n" > /etc/docker-resolv-jarvis.conf'
+ExecStart=/usr/bin/docker compose -f deploy/jetson/compose.yml up -d
+ExecReload=/usr/bin/docker compose -f deploy/jetson/compose.yml up -d --no-deps --build api
+ExecStop=/usr/bin/docker compose -f deploy/jetson/compose.yml stop
+TimeoutStartSec=0
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target

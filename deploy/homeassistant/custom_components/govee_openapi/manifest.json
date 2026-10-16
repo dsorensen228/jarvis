@@ -1,0 +1,11 @@
+{
+  "domain": "govee_openapi",
+  "name": "Govee OpenAPI",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://developer.govee.com/reference/get-you-devices",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "1.0.0"
+}

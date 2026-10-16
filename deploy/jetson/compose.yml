@@ -1,0 +1,161 @@
+name: jarvis
+
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: apps/api/Dockerfile
+    restart: always
+    network_mode: host
+    # Docker often writes an empty resolv.conf even with host networking when the
+    # Jetson uses systemd-resolved (127.0.0.53). Without nameservers, Google ID
+    # token verification cannot fetch JWKS and Android/web login returns 500.
+    # Mount a host file with explicit nameservers (see deploy/jetson/README.md).
+    env_file: ../../.env
+    environment:
+      JARVIS_LLM_BASE_URL: http://127.0.0.1:8080/v1
+      JARVIS_VISION_BASE_URL: http://127.0.0.1:8083/v1
+      JARVIS_ASR_URL: http://127.0.0.1:8091
+      JARVIS_TTS_URL: http://127.0.0.1:8092
+    volumes:
+      - ../../data:/app/data
+      - /etc/docker-resolv-jarvis.conf:/etc/resolv.conf:ro
+    depends_on:
+      llm:
+        condition: service_healthy
+      vision:
+        condition: service_healthy
+      asr:
+        condition: service_healthy
+      tts:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5).read()",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 3
+      start_period: 30s
+
+  llm:
+    build:
+      context: ../..
+      dockerfile: services/llm/Dockerfile.jetson
+      args:
+        L4T_BASE_IMAGE: ${L4T_BASE_IMAGE:-nvcr.io/nvidia/l4t-jetpack:r35.4.1}
+        LLAMA_CPP_REF: ${LLAMA_CPP_REF:-b6941}
+    restart: always
+    network_mode: host
+    runtime: nvidia
+    environment:
+      LLM_HOST: 127.0.0.1
+      # heretic (default experiment) or stock; LLM_MODEL_FILE overrides when set.
+      JARVIS_LLM_VARIANT: ${JARVIS_LLM_VARIANT:-heretic}
+      LLM_MODEL_FILE: ${LLM_MODEL_FILE:-}
+      LLM_CONTEXT_SIZE: ${JARVIS_LLM_CONTEXT_TOKENS:-16384}
+    volumes:
+      - ../../models/llm:/models:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python3",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=5).read()",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 3
+      start_period: 15m
+
+  asr:
+    build:
+      context: ../../services/asr
+      dockerfile: Dockerfile.jetson
+      args:
+        L4T_BASE_IMAGE: ${L4T_BASE_IMAGE:-nvcr.io/nvidia/l4t-jetpack:r35.4.1}
+    restart: always
+    network_mode: host
+    runtime: nvidia
+    environment:
+      WHISPER_MODEL: ${WHISPER_MODEL:-Systran/faster-distil-whisper-large-v3}
+      WHISPER_DEVICE: cuda
+      WHISPER_COMPUTE_TYPE: int8_float16
+      HF_HOME: /models/cache
+      LD_PRELOAD: /lib/aarch64-linux-gnu/libgomp.so.1
+    command: ["python3", "-m", "uvicorn", "app:app", "--host", "127.0.0.1", "--port", "8091"]
+    volumes:
+      - ../../models/whisper:/models/cache
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python3",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8091/health/ready', timeout=5).read()",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 3
+      start_period: 15m
+
+  vision:
+    build:
+      context: ../..
+      dockerfile: services/llm/Dockerfile.jetson
+      args:
+        L4T_BASE_IMAGE: ${L4T_BASE_IMAGE:-nvcr.io/nvidia/l4t-jetpack:r35.4.1}
+        LLAMA_CPP_REF: ${LLAMA_CPP_REF:-b6941}
+    restart: always
+    network_mode: host
+    runtime: nvidia
+    environment:
+      LLM_HOST: 127.0.0.1
+      LLM_PORT: 8083
+      LLM_MODEL_PATH: /models/${VISION_MODEL_FILE:-Qwen3VL-4B-Instruct-Q4_K_M.gguf}
+      LLM_MMPROJ_PATH: /models/${VISION_MMPROJ_FILE:-mmproj-Qwen3VL-4B-Instruct-Q8_0.gguf}
+      LLM_CONTEXT_SIZE: ${JARVIS_VISION_CONTEXT_TOKENS:-8192}
+      LLM_IMAGE_MAX_TOKENS: ${JARVIS_VISION_IMAGE_MAX_TOKENS:-1024}
+    volumes:
+      - ../../models/vision:/models:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python3",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8083/health', timeout=5).read()",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 3
+      start_period: 10m
+
+  tts:
+    build:
+      context: ../../services/tts
+    restart: always
+    network_mode: host
+    environment:
+      KOKORO_MODEL_DIR: /models
+      KOKORO_SPEED: ${KOKORO_SPEED:-1.2}
+    command: ["python", "-m", "uvicorn", "app:app", "--host", "127.0.0.1", "--port", "8092"]
+    volumes:
+      - ../../models/kokoro:/models:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8092/health/ready', timeout=5).read()",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 3
+      start_period: 2m
