@@ -1,0 +1,27 @@
+.factory-tasks .code-tasks-header { gap: 16px; flex-shrink: 0; }
+.factory-tasks .code-tasks-header h1 { margin: 0 auto 0 0; font-size: 25px; }
+.factory-modes { display: flex; padding: 3px; gap: 4px; border: 1px solid #463050; border-radius: 14px; }
+.factory-modes button { min-height: 48px; min-width: 86px; padding: 8px 18px; border: 0; border-radius: 10px; background: transparent; color: #bdabca; font-family: inherit; font-size: 16px; font-weight: 600; line-height: 1.2; cursor: pointer; touch-action: manipulation; }
+.factory-modes button[aria-pressed="true"] { background: #32203f; color: #efceff; }
+.factory-modes button:focus-visible { outline: 2px solid #bf5af2; outline-offset: 1px; }
+.factory-tasks .code-toolbar { flex-shrink: 0; }
+.factory-tasks .code-filters button, .factory-tasks .code-refresh { min-height: 48px; }
+.factory-tasks .code-modal { padding: 20px; }
+.factory-create-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-shrink: 0; }
+.factory-create-heading h2 { margin: 0; font-size: 23px; }
+.factory-create-body { overflow-y: auto; min-height: 0; }
+.factory-instructions { margin: 0 0 12px; color: #bdabca; font-size: 16px; line-height: 1.45; }
+.factory-create-body .code-record-btn { width: 100%; }
+.factory-create-body .code-transcript { margin: 0 0 12px; max-height: 22vh; }
+.factory-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.factory-options .code-model-row { flex-wrap: nowrap; gap: 5px; }
+.factory-options .code-model-chip { flex: 1; padding-inline: 9px; white-space: nowrap; font-size: 15px; }
+.factory-options .code-model-hint { margin: 0 0 6px; }
+.factory-tasks .code-detail-actions, .factory-tasks .code-detail-title, .factory-tasks .code-cancel-task { flex-shrink: 0; }
+.factory-tasks .code-close-icon { min-width: 48px; min-height: 48px; flex-shrink: 0; }
+@media (max-width: 700px) {
+  .factory-tasks .code-tasks-header { flex-wrap: wrap; gap: 8px; }
+  .factory-tasks .code-tasks-header h1 { font-size: 21px; }
+  .factory-modes button { min-width: 68px; padding-inline: 10px; }
+  .factory-options { grid-template-columns: 1fr; gap: 12px; }
+}

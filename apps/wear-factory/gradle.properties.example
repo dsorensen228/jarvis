@@ -1,0 +1,5 @@
+# Copy to gradle.properties or set the same key in local.properties (recommended for local-only).
+# Default (when unset) is the public ngrok tunnel, same as Expo:
+#   https://jarvis-api.example.com
+# WEAR_API_BASE_URL=https://jarvis-api.example.com
+# WEAR_GOOGLE_WEB_CLIENT_ID=1234567890-example.apps.googleusercontent.com

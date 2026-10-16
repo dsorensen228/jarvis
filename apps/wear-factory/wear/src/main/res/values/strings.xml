@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Code Factory</string>
+    <string name="logo_content_description">Code Factory — tap to record a prompt, long press to sign out</string>
+    <string name="sign_in_title">Sign in to Code Factory</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="signing_in">Signing in…</string>
+    <string name="sign_in_failed">Google sign-in failed</string>
+    <string name="sign_in_cancelled">Google sign-in cancelled</string>
+    <string name="sign_in_no_id_token">Google did not return an identity token. Check the OAuth client and watch app SHA-1.</string>
+    <string name="missing_google_client_id">Set WEAR_GOOGLE_WEB_CLIENT_ID and rebuild.</string>
+    <string name="need_api_url">Set the Jarvis API URL on the sign-in screen.</string>
+    <string name="mic_permission">Microphone permission is required to record a task prompt.</string>
+    <string name="new_task">New coding task</string>
+    <string name="empty_tasks">No coding tasks yet.</string>
+    <string name="confirm_prompt">Create this task?</string>
+    <string name="discard_prompt">Discard</string>
+    <string name="confirm_create">Create task</string>
+    <string name="record_timeout">Recording timed out after 30 seconds.</string>
+</resources>

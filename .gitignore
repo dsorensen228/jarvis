@@ -1,0 +1,39 @@
+.env
+.venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+data/
+models/
+!apps/wear/wear/src/main/java/com/jarvis/wearjarvis/data/
+!apps/wear/wear/src/main/java/com/jarvis/wearjarvis/data/*.kt
+**/models/
+dist/
+node_modules/
+.expo/
+.gradle/
+.kotlin/
+**/build/
+local.properties
+*.tsbuildinfo
+*.egg-info/
+
+# Household-specific Code Factory policy. Keep only the sanitized example in Git.
+/deploy/macmini/workspace-AGENTS.md
+.idea/
+
+# Expo prebuild output (managed workflow; EAS builds regenerate this)
+apps/mobile/android/
+apps/mobile/ios/
+apps/mobile/google-services.json
+
+# Browser test output
+apps/device-ui/test-results/
+apps/device-ui/playwright-report/
+
+apps/mobile/test-results/
+apps/mobile/playwright-report/

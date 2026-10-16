@@ -1,0 +1,11 @@
+[Unit]
+Description=Check Jarvis network connectivity every 30 seconds
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=30s
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
+

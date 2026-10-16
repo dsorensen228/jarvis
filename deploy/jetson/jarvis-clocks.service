@@ -1,0 +1,11 @@
+[Unit]
+Description=Lock Jetson clocks for low-latency Jarvis inference
+After=nvpmodel.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/jetson_clocks
+
+[Install]
+WantedBy=multi-user.target

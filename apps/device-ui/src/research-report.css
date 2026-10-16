@@ -1,0 +1,68 @@
+.research-report-viewer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: #000;
+  color: #eee8f2;
+}
+
+.research-report-viewer[open] { display: flex; flex-direction: column; }
+.research-report-viewer::backdrop { background: #000; }
+
+.research-report-toolbar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 8px;
+  border-bottom: 1px solid var(--kiosk-border, #463050);
+}
+
+.research-report-toolbar h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.research-report-toolbar button {
+  flex-shrink: 0;
+  min-width: 48px;
+  min-height: 48px;
+  border: 1px solid var(--kiosk-border, #463050);
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: #160e1d;
+  color: #e4baf9;
+  font: 600 16px/1.2 system-ui, sans-serif;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.research-report-toolbar button:focus-visible { outline: 2px solid var(--kiosk-accent, #bf5af2); outline-offset: 2px; }
+.research-report-toolbar button:active { background: #32203f; }
+.research-report-toolbar button:disabled { color: #776482; cursor: default; }
+.research-report-text-controls { display: flex; align-items: center; gap: 6px; }
+.research-report-text-controls output { min-width: 22px; text-align: center; font-size: 14px; color: #beb1c8; font-variant-numeric: tabular-nums; }
+.research-report-viewport { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.research-report-frame { position: absolute; inset: 0; border: 0; background: #000; transform-origin: top left; }
+
+@media (max-width: 520px) {
+  .research-report-toolbar { gap: 8px; padding: 6px; min-height: 60px; }
+  .research-report-toolbar h2 { font-size: 14px; }
+  .research-report-toolbar button { padding-inline: 10px; }
+  .research-report-text-controls { gap: 4px; }
+}

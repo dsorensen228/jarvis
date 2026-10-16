@@ -1,0 +1,17 @@
+[Unit]
+Description=Jarvis touchscreen kiosk
+After=graphical-session.target jarvis.service
+Wants=jarvis.service
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=%h/.Xauthority
+EnvironmentFile=%h/.config/jarvis/voice.env
+ExecStart=@JARVIS_ROOT@/devices/voice/deploy/launch-kiosk.sh
+Restart=always
+RestartSec=3
+TimeoutStopSec=10
+
+[Install]
+WantedBy=default.target

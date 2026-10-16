@@ -1,0 +1,15 @@
+[Unit]
+Description=Recover stalled Jarvis Wi-Fi and offline public tunnel
+After=NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/default/jarvis-network-watchdog
+ExecStart=/usr/bin/python3 /usr/local/libexec/jarvis/network-watchdog.py
+RuntimeDirectory=jarvis-network-watchdog
+RuntimeDirectoryMode=0700
+RuntimeDirectoryPreserve=yes
+TimeoutStartSec=90
+UMask=0077
+

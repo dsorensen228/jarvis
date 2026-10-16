@@ -1,0 +1,13 @@
+[Unit]
+Description=Configure shared ReSpeaker USB 4 Mic audio
+After=pipewire.service wireplumber.service pipewire-pulse.service
+Wants=pipewire.service wireplumber.service pipewire-pulse.service
+Before=jarvis.service
+
+[Service]
+Type=oneshot
+ExecStart=@JARVIS_ROOT@/devices/voice/scripts/setup-usb4mic-audio.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

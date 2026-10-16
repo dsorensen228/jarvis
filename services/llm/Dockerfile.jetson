@@ -1,0 +1,28 @@
+ARG L4T_BASE_IMAGE=nvcr.io/nvidia/l4t-jetpack:r35.4.1
+ARG LLAMA_CPP_REF=b6941
+FROM ${L4T_BASE_IMAGE} AS build
+ARG LLAMA_CPP_REF
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential ca-certificates git libcurl4-openssl-dev python3-pip && \
+    python3 -m pip install --no-cache-dir cmake==3.28.4 && \
+    rm -rf /var/lib/apt/lists/*
+RUN git clone --depth 1 --branch ${LLAMA_CPP_REF} https://github.com/ggml-org/llama.cpp.git /src/llama.cpp && \
+    cmake -S /src/llama.cpp -B /src/llama.cpp/build \
+      -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=87 \
+      -DBUILD_SHARED_LIBS=OFF \
+      -DLLAMA_ALL_WARNINGS=OFF \
+      -DLLAMA_CURL=ON -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF \
+      -DCMAKE_BUILD_TYPE=Release && \
+    cmake --build /src/llama.cpp/build --target llama-server \
+      --config Release --parallel "$(nproc)"
+
+FROM ${L4T_BASE_IMAGE}
+RUN apt-get update && apt-get install -y --no-install-recommends libcurl4 && \
+    rm -rf /var/lib/apt/lists/*
+COPY --from=build /src/llama.cpp/build/bin/llama-server /usr/local/bin/llama-server
+COPY services/llm/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+EXPOSE 8080
+ENTRYPOINT ["/entrypoint.sh"]

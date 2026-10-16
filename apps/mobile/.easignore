@@ -1,0 +1,38 @@
+# Dependencies - EAS reinstalls from package.json
+node_modules/
+
+# Build output
+dist/
+.expo/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# Git
+.git/
+.gitignore
+
+# google-services.json is excluded from Git but intentionally included in the
+# Android build archive. It is Firebase client configuration, not an account key.
+
+# IDE and OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+tmp/
+temp/
+.cache/
+
+# Env files with secrets - use EAS Secrets instead
+.env.local
+.env.*.local

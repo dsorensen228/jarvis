@@ -1,0 +1,261 @@
+/* Clock surfaces share one quiet visual language, independent of app navigation. */
+.clock-workspace {
+  --clock-panel: var(--kiosk-bg);
+  --clock-border: var(--kiosk-border);
+  --clock-muted: #aaa3b5;
+  --clock-accent: var(--kiosk-accent);
+  width: 100%; max-width: 1500px; margin: 0 auto;
+  padding: 18px 60px 28px; display: flex; flex-direction: column; gap: 22px;
+  flex: 1; min-height: 0; overflow-y: auto; color: #f1ecf6;
+}
+.clock-workspace button, .clock-dialog button, .clock-mini button, .clock-ringing button {
+  font: inherit; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.clock-workspace button:focus-visible, .clock-dialog button:focus-visible, .clock-dialog input:focus-visible, .clock-mini button:focus-visible, .clock-ringing button:focus-visible {
+  outline: 3px solid var(--kiosk-accent); outline-offset: 3px;
+}
+.clock-workspace button:disabled, .clock-dialog button:disabled { opacity: .42; cursor: default; }
+.clock-page-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex: 0 0 auto; }
+.clock-tabs { display: flex; padding: 4px; background: var(--kiosk-bg); border: 1px solid var(--kiosk-border); border-radius: 17px; gap: 3px; }
+.clock-tabs button { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 0 20px; border: 0; border-radius: 12px; color: #b7aebf; background: transparent; font-size: 16px; font-weight: 650; }
+.clock-tabs button[aria-selected=true] { background: var(--kiosk-bg); color: var(--kiosk-accent); box-shadow: inset 0 -2px var(--kiosk-accent); }
+.clock-tabs button span { min-width: 20px; padding: 2px 6px; background: var(--kiosk-bg); border-radius: 6px; font-size: 11px; }
+.clock-primary, .clock-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 12px 22px; border: 1px solid transparent; border-radius: 13px; font-weight: 700 !important; font-size: 15px; }
+.clock-primary { color: var(--kiosk-accent); background: var(--kiosk-bg); border-color: var(--kiosk-accent); }
+.clock-secondary { color: var(--kiosk-accent); background: var(--kiosk-bg); border-color: var(--kiosk-border); }
+.clock-new { white-space: nowrap; }
+.clock-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 24px; margin-bottom: 12px; }
+.clock-section-heading h1, .clock-section-heading h2 { margin: 0; font-size: 16px; font-weight: 620; letter-spacing: -.02em; }
+.clock-section-heading > span { font-size: 11px; color: #9d91aa; white-space: nowrap; }
+.clock-eyebrow { display: block; font-size: 10px; font-weight: 700; letter-spacing: .14em; color: #b79dc9; }
+.clock-timer-workspace { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 28px; }
+.clock-quick-start { min-width: 0; }
+.clock-presets { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.clock-presets button { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-height: 90px; padding: 13px 15px; color: #e9dfef; background: var(--kiosk-bg); border: 1px solid var(--kiosk-border); border-radius: 15px; text-align: left; }
+.clock-presets button:active { background: var(--kiosk-bg); border-color: var(--kiosk-accent); transform: scale(.98); }
+.clock-presets strong { font-size: 27px; line-height: 1; font-weight: 500; font-variant-numeric: tabular-nums; }
+.clock-presets strong small { font-size: 12px; margin-left: 5px; font-weight: 500; color: #b8a0c8; }
+.clock-presets button > span { font-size: 11px; color: #a99caf; }
+.clock-recents { margin-top: 24px; }
+.clock-recents > button { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 50px; padding: 8px 2px; border: 0; border-top: 1px solid var(--kiosk-border); color: var(--kiosk-accent); background: transparent; text-align: left; }
+.clock-recents > button > span:first-child { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.clock-recents strong { font-size: 13px; font-weight: 550; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #d7cbdc; }
+.clock-recents small { font-size: 11px; color: #958b9e; }
+.clock-recents > button > span:last-child { font-size: 26px; padding-right: 8px; }
+.clock-active-timers { min-width: 0; }
+.clock-timer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.clock-timer-card { min-width: 0; padding: 18px; background: var(--kiosk-bg); border: 1px solid var(--kiosk-border); border-radius: 22px; }
+.clock-timer-card.is-paused { background: var(--kiosk-bg); border-color: var(--kiosk-border); border-style: dashed; }
+.clock-timer-card.is-finished { border-color: var(--kiosk-accent); }
+.clock-timer-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.clock-timer-label { min-width: 0; }
+.clock-timer-label h2 { margin: 6px 0 0; font-size: 19px; font-weight: 590; overflow-wrap: anywhere; line-height: 1.2; }
+.clock-icon-button { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px; min-width: 44px; height: 44px; border: 0; border-radius: 12px; color: var(--kiosk-accent); background: var(--kiosk-bg); font-size: 26px !important; }
+.clock-timer-card .clock-icon-button { margin: -7px -7px 0 0; }
+.clock-timer-face { display: flex; align-items: center; gap: 16px; margin: 19px 0; }
+.clock-card-ring { position: relative; width: 82px; height: 82px; flex: 0 0 82px; }
+.clock-ring { display: block; width: 100%; height: 100%; overflow: visible; }
+.clock-ring circle { fill: none; stroke-width: 4; }
+.clock-ring-track { stroke: var(--kiosk-border); }
+.clock-ring-progress { stroke: var(--kiosk-accent); stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset .3s linear; }
+.is-paused .clock-ring-progress { stroke: #8c7c98; }
+.clock-card-ring > span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 31px; color: var(--kiosk-accent); }
+.clock-countdown { margin: 0; color: #f6ecfd; font-size: clamp(32px, 3.3vw, 46px); font-weight: 350; line-height: 1.1; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+.clock-finish { margin: 7px 0 0; font-size: 12px; color: #ada0b8; }
+.clock-timer-actions { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 7px; }
+.clock-timer-actions button, .clock-card-confirm button { min-height: 44px; padding: 8px; border: 1px solid var(--kiosk-border); border-radius: 10px; color: var(--kiosk-accent); background: var(--kiosk-bg); font-size: 12px; font-weight: 600; }
+.clock-timer-actions .clock-card-primary { color: var(--kiosk-accent); background: var(--kiosk-bg); border-color: var(--kiosk-accent); }
+.clock-card-confirm { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 12px; }
+.clock-card-confirm > span { flex: 1; color: #d4bfdc; }
+.clock-card-confirm .clock-danger { color: #ffc1cc; border-color: #673541; background: var(--kiosk-bg); }
+.clock-timer-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 306px; text-align: center; border: 1px solid var(--kiosk-border); border-radius: 24px; background: var(--kiosk-bg); padding: 24px; }
+.clock-timer-empty h2 { margin: 0 0 20px; font-size: 20px; font-weight: 500; }
+.clock-alarm-workspace { min-width: 0; }
+.clock-next-alarm { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 23px 28px; margin-bottom: 26px; border: 1px solid var(--kiosk-border); border-radius: 22px; background: var(--kiosk-bg); }
+.clock-next-alarm h1 { margin: 8px 0; font-size: 25px; font-weight: 510; letter-spacing: -.03em; overflow-wrap: anywhere; }
+.clock-next-alarm p { margin: 0; font-size: 13px; color: #c0a7d0; }
+.clock-next-time { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; font-size: 52px; font-weight: 300; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+.clock-next-time > span { font-size: 14px; color: #c59bdd; font-weight: 600; letter-spacing: 0; }
+.clock-alarm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.clock-alarm-card { padding: 20px 22px 12px; background: var(--kiosk-bg); border: 1px solid var(--kiosk-border); border-radius: 20px; }
+.clock-alarm-card.is-off { background: var(--kiosk-bg); border-color: var(--kiosk-border); border-style: dashed; }
+.clock-alarm-card-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.clock-alarm-edit { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; flex: 1; gap: 4px; padding: 0; text-align: left; border: 0; background: none; color: #f0e9f6; }
+.clock-alarm-time { font-size: 42px; letter-spacing: -.06em; font-weight: 350; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.clock-alarm-time small { font-size: 12px; letter-spacing: 0; margin-left: 7px; color: #b49ac5; font-weight: 600; }
+.clock-alarm-edit > strong { font-size: 14px; font-weight: 580; margin-top: 5px; overflow-wrap: anywhere; }
+.is-off .clock-alarm-edit { color: #97919e; }
+.clock-switch { position: relative; width: 58px; height: 44px; flex: 0 0 58px; border: 0; background: transparent; }
+.clock-switch::before { content: ''; position: absolute; inset: 7px 0; border-radius: 30px; background: var(--kiosk-bg); box-shadow: inset 0 0 0 1px var(--kiosk-border); }
+.clock-switch > span { position: absolute; top: 10px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #aaa1b3; transition: transform .15s; }
+.clock-switch[aria-checked=true]::before { background: var(--kiosk-bg); box-shadow: inset 0 0 0 1px var(--kiosk-accent); }
+.clock-switch[aria-checked=true] > span { background: var(--kiosk-accent); transform: translateX(28px); }
+.clock-alarm-repeat { font-size: 12px; margin: 14px 0 10px; color: #c0aecb; }
+.clock-alarm-repeat span { color: #95879f; }
+.clock-alarm-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid var(--kiosk-border); padding-top: 3px; }
+.clock-alarm-card-bottom > span { font-size: 11px; color: #a195ad; }
+.clock-delete { min-height: 44px; padding: 8px; border: 0; color: var(--kiosk-accent); background: none; font-size: 11px !important; }
+.clock-delete:active { color: #ffc1cc; }
+.clock-empty-alarm { padding: 20px; text-align: center; }
+.clock-empty-alarm h3 { font-size: 20px; font-weight: 500; }
+.clock-undo { position: fixed; z-index: 180; left: 50%; transform: translateX(-50%); bottom: 85px; display: flex; align-items: center; gap: 18px; max-width: calc(100% - 32px); padding: 9px 12px 9px 20px; border: 1px solid var(--kiosk-border); border-radius: 15px; background: var(--kiosk-bg); color: #f0dbfb; box-shadow: 0 8px 30px #0008; font-size: 13px; }
+.clock-undo > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.clock-undo button { min-height: 44px; min-width: 44px; padding: 6px 10px; border: 0; border-radius: 8px; background: var(--kiosk-bg); color: var(--kiosk-accent); font-weight: 650; }
+.clock-undo button:last-child { background: transparent; font-size: 22px; padding: 4px; }
+.clock-notice, .clock-error { margin: 0; font-size: 12px; line-height: 1.4; color: #f5becd; }
+.clock-backdrop { position: fixed; z-index: 230; inset: 0; padding: 18px; background: var(--kiosk-bg); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; }
+.clock-dialog { width: min(100%, 620px); max-height: calc(100dvh - 36px); overflow-y: auto; padding: 22px; border: 1px solid var(--kiosk-border); border-radius: 24px; background: var(--kiosk-bg); color: #f1e8f7; box-shadow: 0 24px 80px #0009; outline: none; }
+.clock-dialog--wide { width: min(100%, 780px); }
+.clock-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+.clock-dialog-header h2 { margin: 0; font-size: 21px; font-weight: 580; letter-spacing: -.02em; }
+.clock-dialog-header .clock-icon-button { background: var(--kiosk-bg); }
+.clock-compose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.clock-compose-options { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.clock-time-fields { display: flex; gap: 7px; margin-bottom: 12px; }
+.clock-time-fields button { display: flex; flex: 1; min-width: 0; flex-direction: column; align-items: center; gap: 5px; min-height: 86px; padding: 10px 6px; border: 1px solid var(--kiosk-border); border-radius: 14px; color: #b5a3c2; background: var(--kiosk-bg); }
+.clock-time-fields button.is-selected { color: var(--kiosk-accent); border-color: var(--kiosk-accent); background: var(--kiosk-bg); box-shadow: inset 0 -2px var(--kiosk-accent); }
+.clock-time-fields strong { font-size: 35px; line-height: 1.05; font-weight: 380; font-variant-numeric: tabular-nums; }
+.clock-time-fields span { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
+.clock-keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.clock-keypad button { min-height: 45px; border: 1px solid var(--kiosk-border); border-radius: 10px; background: var(--kiosk-bg); color: var(--kiosk-accent); font-size: 21px; }
+.clock-keypad button:active { background: var(--kiosk-bg); border-color: var(--kiosk-accent); }
+.clock-keypad .clock-keypad-action { font-size: 12px; color: var(--kiosk-accent); }
+.clock-input-hint { margin: 9px 0 0; color: #a18eaf; font-size: 11px; }
+.clock-name-button { position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 76px; width: 100%; padding: 12px 38px 12px 14px; border: 1px solid var(--kiosk-border); border-radius: 13px; background: var(--kiosk-bg); text-align: left; color: #eee0f6; }
+.clock-name-button > span:first-child { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: #b596c6; }
+.clock-name-button strong { font-size: 15px; font-weight: 560; overflow-wrap: anywhere; }
+.clock-name-button > span:last-child { position: absolute; right: 14px; top: 24px; color: var(--kiosk-accent); font-size: 22px; }
+.clock-add-time { display: flex; gap: 8px; }
+.clock-add-time button { flex: 1; min-height: 44px; border: 1px solid var(--kiosk-border); border-radius: 10px; color: var(--kiosk-accent); background: var(--kiosk-bg); font-size: 12px; }
+.clock-compose-summary { margin: auto 0; padding: 6px 0; }
+.clock-compose-summary > span { font-size: 10px; letter-spacing: .13em; color: #9e86ae; }
+.clock-compose-summary > strong { display: block; font-size: 28px; font-weight: 400; margin-top: 8px; letter-spacing: -.02em; }
+.clock-compose-summary p { font-size: 12px; color: #b09dbd; margin-bottom: 0; }
+.clock-start { justify-content: space-between; }
+.clock-period { display: flex; gap: 8px; margin-top: 12px; }
+.clock-period button { flex: 1; min-height: 44px; border: 1px solid var(--kiosk-border); border-radius: 10px; color: #b19cc0; background: var(--kiosk-bg); }
+.clock-period button[aria-pressed=true] { background: var(--kiosk-bg); color: var(--kiosk-accent); border-color: var(--kiosk-accent); box-shadow: inset 0 -2px var(--kiosk-accent); }
+.clock-choice-field { padding: 0; margin: 0; min-width: 0; border: 0; }
+.clock-choice-field legend { padding: 0; margin-bottom: 8px; color: #c0a8cf; font-size: 11px; }
+.clock-repeat-options, .clock-snooze-options { display: flex; flex-wrap: wrap; gap: 6px; }
+.clock-repeat-options button, .clock-snooze-options button { flex: 1; min-width: 60px; min-height: 44px; padding: 8px 10px; border: 1px solid var(--kiosk-border); border-radius: 10px; color: #bca8c9; background: var(--kiosk-bg); font-size: 11px; }
+.clock-repeat-options button[aria-pressed=true], .clock-snooze-options button[aria-pressed=true] { background: var(--kiosk-bg); color: var(--kiosk-accent); border-color: var(--kiosk-accent); box-shadow: inset 0 -2px var(--kiosk-accent); }
+.clock-weekdays { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.clock-weekdays button { min-width: 0; min-height: 44px; padding: 0; border: 1px solid var(--kiosk-border); border-radius: 8px; background: var(--kiosk-bg); color: #b89cc8; font-size: 12px; }
+.clock-weekdays button[aria-pressed=true] { background: var(--kiosk-bg); border-color: var(--kiosk-accent); color: var(--kiosk-accent); box-shadow: inset 0 -2px var(--kiosk-accent); }
+.clock-next-preview { margin: 0; color: #c8acd8; font-size: 11px; line-height: 1.45; }
+.clock-alarm-options { gap: 14px; }
+.clock-alarm-options > .clock-primary { margin-top: auto; }
+.clock-name-editor { display: flex; flex-direction: column; gap: 15px; }
+.clock-label-input { display: flex; flex-direction: column; gap: 8px; font-size: 11px; color: #b7a1c4; }
+.clock-label-input input { width: 100%; min-height: 56px; padding: 12px 16px; border: 1px solid var(--kiosk-border); border-radius: 12px; outline: none; font: inherit; font-size: 20px; background: var(--kiosk-bg); color: #f4e2ff; }
+.clock-name-suggestions { display: flex; flex-wrap: wrap; gap: 7px; }
+.clock-name-suggestions button { min-height: 44px; flex: 1; border: 1px solid var(--kiosk-border); border-radius: 10px; background: var(--kiosk-bg); color: var(--kiosk-accent); font-size: 12px; }
+.clock-name-editor .osk { position: static; border: 0; border-radius: 15px; background: var(--kiosk-bg); box-shadow: none; padding: 8px; }
+.clock-name-editor .osk-key { min-height: 44px; background: var(--kiosk-bg); border-color: var(--kiosk-border); }
+.clock-name-editor .osk-key--submit { background: var(--kiosk-bg); color: var(--kiosk-accent); border-color: var(--kiosk-accent); }
+.clock-name-editor .osk-key--space { flex: 6; }
+
+/* Persistent countdown stays discreet and opens the complete timer list. */
+.clock-mini { position: fixed; z-index: 150; left: 50%; transform: translateX(-50%); bottom: 84px; display: flex; align-items: center; gap: 10px; width: min(520px, calc(100% - 32px)); padding: 8px 10px; border: 1px solid var(--kiosk-border); border-radius: 18px; background: var(--kiosk-bg); box-shadow: 0 10px 30px #0007; backdrop-filter: blur(12px); }
+.clock-mini-open { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; min-height: 44px; padding: 0; border: 0; background: none; color: #efdff8; text-align: left; }
+.clock-mini-ring { position: relative; width: 40px; height: 40px; flex: 0 0 40px; }
+.clock-mini-ring > span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 14px; }
+.clock-mini-label { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.clock-mini-label strong { font-size: 12px; font-weight: 550; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clock-mini-label small { font-size: 10px; color: #b697c7; }
+.clock-mini-time { margin-left: auto; font-size: 23px; font-weight: 400; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.clock-mini-control { min-width: 44px; min-height: 44px; padding: 9px; border: 1px solid var(--kiosk-border); border-radius: 11px; color: var(--kiosk-accent); background: var(--kiosk-bg); font-size: 12px !important; }
+.clock-mini-close { min-width: 44px; min-height: 44px; border: 0; color: var(--kiosk-accent); background: none; font-size: 23px !important; }
+.clock-ringing { position: fixed; z-index: 320; inset: 0; display: flex; align-items: center; justify-content: center; padding: 26px; background: var(--kiosk-bg); backdrop-filter: blur(12px); color: #f2e4fc; }
+.clock-ringing-card { display: flex; flex-direction: column; width: min(660px, 100%); max-height: calc(100dvh - 52px); text-align: center; }
+.clock-ringing-content { overflow-y: auto; min-height: 0; padding: 14px 8px 20px; }
+.clock-ringing-symbol { display: grid; place-items: center; width: 90px; height: 90px; margin: 0 auto 23px; border: 1px solid var(--kiosk-border); border-radius: 50%; background: var(--kiosk-bg); color: var(--kiosk-accent); font-size: 44px; box-shadow: none; }
+.clock-ringing .clock-eyebrow { font-size: 12px; color: #c295d7; }
+.clock-ringing h1 { margin: 12px 0; font-weight: 400; font-size: clamp(32px, 5vw, 55px); letter-spacing: -.045em; overflow-wrap: anywhere; }
+.clock-ringing-detail { margin: 0 0 24px; color: #bda0cf; font-size: 16px; }
+.clock-ringing-queue { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none; font-size: 12px; color: #caaddb; }
+.clock-ringing-queue li { max-width: 100%; padding: 8px 12px; border-radius: 10px; background: var(--kiosk-bg); border: 1px solid var(--kiosk-border); overflow-wrap: anywhere; }
+.clock-ringing-actions { display: flex; gap: 14px; flex-shrink: 0; padding: 4px; }
+.clock-ringing-actions button { flex: 1; min-height: 68px; border-radius: 17px; font-size: 18px; }
+.clock-ringing-actions .clock-secondary { color: var(--kiosk-accent); }
+.clock-ringing-hint { margin: 16px 0 0; font-size: 12px; color: #a98aba; }
+@media (min-width: 1100px) and (min-height: 620px) {
+  .clock-workspace { padding: 30px 64px 40px; gap: 30px; }
+  .clock-timer-workspace { grid-template-columns: 250px minmax(0, 1fr); gap: 36px; }
+  .clock-presets button { min-height: 106px; padding: 18px; }
+  .clock-presets strong { font-size: 33px; }
+  .clock-presets button > span { font-size: 12px; }
+  .clock-section-heading { margin-bottom: 16px; }
+  .clock-section-heading h1, .clock-section-heading h2 { font-size: 18px; }
+  .clock-timer-card { padding: 22px; }
+  .clock-timer-face { margin: 25px 0; }
+  .clock-card-ring { width: 92px; height: 92px; flex-basis: 92px; }
+  .clock-timer-empty { min-height: 420px; }
+  .clock-timer-empty h2 { font-size: 25px; }
+  .clock-dialog { padding: 26px; }
+}
+@media (max-height: 560px) {
+  .clock-workspace { padding-top: 10px; gap: 15px; }
+  .clock-page-header { padding: 0 0 1px; }
+  .clock-tabs button { min-height: 42px; }
+  .clock-presets button { min-height: 76px; padding: 11px 13px; }
+  .clock-recents { margin-top: 18px; }
+  .clock-timer-empty { padding: 18px; min-height: 276px; }
+  .clock-timer-empty h2 { font-size: 17px; }
+  .clock-next-alarm { padding: 18px 23px; margin-bottom: 20px; }
+  .clock-next-alarm h1 { font-size: 21px; }
+  .clock-next-time { font-size: 44px; }
+  .clock-backdrop { padding: 10px; }
+  .clock-dialog { max-height: calc(100dvh - 20px); padding: 16px 20px; }
+  .clock-dialog-header { margin-bottom: 10px; }
+  .clock-dialog-header h2 { font-size: 19px; }
+  .clock-compose-grid { gap: 22px; }
+  .clock-time-fields { margin-bottom: 8px; }
+  .clock-time-fields button { min-height: 68px; padding: 7px; }
+  .clock-time-fields strong { font-size: 30px; }
+  .clock-keypad { gap: 5px; }
+  .clock-keypad button { min-height: 44px; }
+  .clock-input-hint { margin-top: 6px; font-size: 10px; }
+  .clock-period { margin-top: 8px; }
+  .clock-name-button { min-height: 61px; padding-top: 8px; padding-bottom: 8px; gap: 4px; }
+  .clock-name-button > span:last-child { top: 15px; }
+  .clock-alarm-options { gap: 10px; }
+  .clock-choice-field legend { margin-bottom: 5px; }
+  .clock-repeat-options button { min-width: 65px; }
+  .clock-compose-grid--alarm .clock-primary { min-height: 44px; padding-top: 9px; padding-bottom: 9px; }
+  .clock-name-editor { gap: 9px; }
+  .clock-name-editor .osk { padding: 6px; gap: 5px; }
+  .clock-label-input input { min-height: 48px; padding: 8px 14px; }
+  .clock-name-suggestions button { min-height: 44px; }
+  .clock-ringing-symbol { width: 68px; height: 68px; margin-bottom: 19px; font-size: 35px; box-shadow: none; }
+  .clock-ringing-actions button { min-height: 58px; }
+}
+@media (max-width: 690px) {
+  .clock-workspace { padding: 62px 16px 24px; }
+  .clock-tabs button { padding: 0 13px; font-size: 14px; }
+  .clock-tabs button span { display: none; }
+  .clock-new { padding: 10px 13px; font-size: 12px; }
+  .clock-timer-workspace { grid-template-columns: 1fr; gap: 24px; }
+  .clock-presets { grid-template-columns: repeat(3, 1fr); }
+  .clock-presets button { min-height: 76px; }
+  .clock-recents { margin-top: 18px; }
+  .clock-timer-grid, .clock-alarm-grid { grid-template-columns: minmax(0, 1fr); }
+  .clock-next-alarm { padding: 18px; gap: 12px; }
+  .clock-next-alarm h1 { font-size: 21px; }
+  .clock-next-time { font-size: 36px; }
+  .clock-compose-grid { grid-template-columns: 1fr; }
+  .clock-dialog { padding: 16px; }
+  .clock-time-fields button { min-height: 72px; }
+  .clock-keypad button { min-height: 48px; }
+  .clock-name-suggestions { gap: 4px; }
+  .clock-name-suggestions button { font-size: 10px; padding: 3px; }
+  .clock-name-editor .osk-key { min-height: 44px; font-size: 12px; }
+  .clock-ringing { padding: 20px; }
+  .clock-ringing-actions { flex-direction: column; }
+  .clock-mini { gap: 6px; padding: 8px; }
+  .clock-mini-ring { display: none; }
+  .clock-mini-time { font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .clock-ring-progress, .clock-switch > span { transition: none; } }
+.clock-cancel-snooze { min-height: 44px; padding: 7px 9px; border: 1px solid var(--kiosk-border); border-radius: 9px; color: var(--kiosk-accent); background: var(--kiosk-bg); font-size: 10px !important; }

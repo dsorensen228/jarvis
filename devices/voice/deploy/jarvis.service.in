@@ -1,0 +1,17 @@
+[Unit]
+Description=Jarvis voice and touchscreen runtime
+After=pipewire.service pipewire-pulse.service jarvis-respeaker-lite-audio.service jarvis-respeaker-usb4-audio.service jarvis-respeaker-xvf3800-audio.service
+Wants=pipewire.service pipewire-pulse.service
+
+[Service]
+Type=simple
+WorkingDirectory=@JARVIS_ROOT@/devices/voice
+Environment=JARVIS_ROOT=@JARVIS_ROOT@
+EnvironmentFile=%h/.config/jarvis/voice.env
+ExecStart=@JARVIS_ROOT@/devices/voice/.venv/bin/jarvis-voice
+Restart=always
+RestartSec=3
+TimeoutStopSec=15
+
+[Install]
+WantedBy=default.target

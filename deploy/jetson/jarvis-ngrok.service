@@ -1,0 +1,14 @@
+[Unit]
+Description=Jarvis API ngrok tunnel
+After=network-online.target jarvis.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=develop
+ExecStart=/usr/local/bin/ngrok http --url=jarvis-api.example.com --log=stdout --log-format=json 8000
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Jarvis</string>
+    <string name="avatar_content_description">Jarvis — tap to speak, long press to sign out</string>
+    <string name="sign_in_title">Sign in to use Jarvis</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="signing_in">Signing in…</string>
+    <string name="sign_in_failed">Google sign-in failed</string>
+    <string name="sign_in_cancelled">Google sign-in cancelled</string>
+    <string name="sign_in_no_id_token">Google did not return an identity token. Check the OAuth client and watch app SHA-1.</string>
+    <string name="missing_google_client_id">Set WEAR_GOOGLE_WEB_CLIENT_ID and rebuild.</string>
+    <string name="listening"></string>
+    <string name="sending">Asking Jarvis…</string>
+    <string name="wear_phase_thinking">Jarvis is thinking…</string>
+    <string name="wear_phase_speaking">Generating speech…</string>
+    <string name="error_prefix">Error: </string>
+    <string name="need_api_url">Set the Jarvis API URL on the sign-in screen.</string>
+    <string name="need_api_url_or_sign_in">Sign in and ensure the Jarvis API URL is correct.</string>
+    <string name="error_sign_in_and_api">Sign in and ensure WEAR_API_BASE_URL is set in local.properties.</string>
+    <string name="mic_permission">Microphone permission is required for voice commands.</string>
+</resources>

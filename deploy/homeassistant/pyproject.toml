@@ -1,0 +1,20 @@
+[project]
+name = "jarvis-homeassistant-govee-tests"
+version = "0.1.0"
+description = "Tests for Jarvis Home Assistant custom components (Govee OpenAPI)"
+requires-python = ">=3.14.2"
+dependencies = [
+  "homeassistant==2026.9.3",
+  "pytest>=8.3",
+  "pytest-asyncio>=0.24",
+  "pytest-homeassistant-custom-component>=0.13.205",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["custom_components"]
+
+[tool.uv]
+package = false

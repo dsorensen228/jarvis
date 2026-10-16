@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jarvis-api"
+version = "0.1.0"
+description = "Local-first Jarvis API for NVIDIA Jetson AGX Orin"
+requires-python = ">=3.8,<3.9"
+dependencies = [
+  "aiosqlite==0.20.0",
+  "cryptography==43.0.3",
+  "fastapi==0.115.6",
+  "google-auth[requests]==2.38.0",
+  "httpx==0.27.2",
+  "PyJWT==2.9.0",
+  "pydantic==1.10.21",
+  "python-dotenv==1.0.1",
+  "python-dateutil==2.9.0.post0",
+  "python-multipart==0.0.20",
+  "uvicorn[standard]==0.32.1",
+  "websockets==13.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.3.5",
+  "pytest-asyncio==0.24.0",
+  "ruff==0.9.10",
+]
+
+[project.scripts]
+jarvis-api = "jarvis_api.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["UP006", "UP007", "UP035"]
