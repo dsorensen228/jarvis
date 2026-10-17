@@ -60,4 +60,3 @@ This unattended rule replaces the interactive escalation guidance above for fact
 - The API has one v1 contract and one Jarvis agent. Do not add legacy operating modes or route
   aliases during migration.
 - Keep model runtimes outside the API process.
-- Migrate packages from Jarvis one at a time and leave unrelated source changes alone.
